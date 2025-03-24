@@ -24,9 +24,9 @@ function showInputs() {
   if (helpType === "budget") {
     showSection(sections.budget, ["income-input", "expense-input", "expense-amount-input"]);
   } else if (helpType === "s-interest") {
-    showSection(sections.sInterest, ["s-principal-input", "s-interest-rate-input", "s-term-input", "s-term-amount-input"]);
+    showSection(sections.sInterest, ["s-principal-input", "s-interest-rate-input", "s-term-amount-input"]);
   } else if (helpType === "c-interest") {
-    showSection(sections.cInterest, ["c-principal-input", "c-interest-rate-input", "c-term-input", "c-term-amount-input"]);
+    showSection(sections.cInterest, ["c-principal-input", "c-interest-rate-input", "c-term-amount-input"]);
   } else if (helpType === "preciation") {
     showSection(sections.preciation, ["preciation-type-input", "preciation-amount-input", "linear-amount-input", "non-linear-amount-input", "type-amount-input"]);
   } else if (helpType === "rates") {
@@ -92,4 +92,38 @@ function clearExpenses() {
   } else {
     alert("No expenses to clear!");
   }
+}
+
+function calculateSimpleInterest() {
+  const sprincipal = parseFloat(document.getElementById("s-principal").value);
+  const srate = parseFloat(document.getElementById("s-interest-rate").value);
+  const stime = parseFloat(document.getElementById("s-term-amount").value);
+
+  if (isNaN(sprincipal) || isNaN(srate) || isNaN(stime)) {
+    alert("Please enter valid numbers for all fields.");
+    return;
+  }
+
+  const simpleInterest = (sprincipal * srate * stime) / 100;
+  document.getElementById("simple-interest-result").innerText = simpleInterest.toFixed(2);
+  
+  const simpleInterestTotal = ((sprincipal * srate * stime) / 100) + sprincipal;
+  document.getElementById("simple-interest-total").innerText = simpleInterestTotal.toFixed(2);
+}
+
+function calculateCompoundInterest() {
+  const cprincipal = parseFloat(document.getElementById("c-principal").value);
+  const crate = parseFloat(document.getElementById("c-interest-rate").value);
+  const ctime = parseFloat(document.getElementById("c-term-amount").value);
+
+  if (isNaN(cprincipal) || isNaN(crate) || isNaN(ctime)) {
+    alert("Please enter valid numbers for all fields.");
+    return;
+  }
+
+  const compoundInterest = (cprincipal * (1 + (crate/100))**ctime);
+  document.getElementById("compound-interest-result").innerText = compoundInterest.toFixed(2);
+  
+  const compoundInterestTotal = (cprincipal * (1 + (crate/100))**ctime) + cprincipal;
+  document.getElementById("compound-interest-total").innerText = compoundInterestTotal.toFixed(2);
 }
