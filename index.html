@@ -23,7 +23,7 @@
     
     <div id="budget-input" class="input-section" style="display:none;">
       <div id="income-input" style="display:none;">
-        <label for="income">Enter your monthly income:</label>
+        <label for="income">Enter your monthly income ($):</label>
         <input type="number" id="income" placeholder="e.g., 5200"><br>
       </div>
       
@@ -33,7 +33,7 @@
       </div>
       
       <div id="expense-amount-input" style="display:none;">
-        <label for="expense-amount">Enter your expense amount:</label>
+        <label for="expense-amount">Enter your expense amount ($):</label>
         <input type="number" id="expense-amount" placeholder="e.g., 1200"><br>
       </div>
       
@@ -59,28 +59,24 @@
     
     <div id="s-interest-input" class="input-section" style="display:none;">
       <div id="s-principal-input" style="display:none;">
-        <label for="s-principal">Enter your principal amount:</label>
+        <label for="s-principal">Enter your principal amount ($):</label>
         <input type="number" id="s-principal" placeholder="e.g., 20000"><br>
       </div>
       
       <div id="s-interest-rate-input" style="display:none;">
-        <label for="s-interest-rate">Enter your interest rate:</label>
+        <label for="s-interest-rate">Enter your interest rate (%):</label>
         <input type="number" id="s-interest-rate" placeholder="e.g., 3"><br>
-      </div>
-      
-      <div id="s-term-input" style="display:none;">
-        <label for="s-term">Select a term:</label>
-        <select id="s-term">
-          <option value="">--Select--</option>
-          <option value="monthly">Monthly</option>
-          <option value="annually">Annually</option>
-        </select>
       </div>
       
       <div id="s-term-amount-input" style="display:none;">
         <label for="s-term-amount">Enter the number of terms:</label>
         <input type="number" id="s-term-amount" placeholder="e.g., 10"><br>
       </div>
+      
+      <button onclick="calculateSimpleInterest()">Calculate Interest</button>
+      
+      <h3>Result: <span id="simple-interest-result">0</span></h3>
+      <h3>Total (Principal + Result): <span id="simple-interest-total">0</span></h3>
     </div>
     
     <div id="c-interest-input" class="input-section" style="display:none;">
@@ -94,19 +90,15 @@
         <input type="number" id="c-interest-rate" placeholder="e.g., 3"><br>
       </div>
       
-      <div id="c-term-input" style="display:none;">
-        <label for="c-term">Select a term:</label>
-        <select id="c-term">
-          <option value="">--Select--</option>
-          <option value="monthly">Monthly</option>
-          <option value="annually">Annually</option>
-        </select>
-      </div>
-      
       <div id="c-term-amount-input" style="display:none;">
         <label for="c-term-amount">Enter the number of terms:</label>
         <input type="number" id="c-term-amount" placeholder="e.g., 10"><br>
       </div>
+      
+      <button onclick="calculateCompoundInterest()">Calculate Interest</button>
+      
+      <h3>Result: <span id="compound-interest-result">0</span></h3>
+      <h3>Total (Principal + Result): <span id="compound-interest-total">0</span></h3>
     </div>
     
     <div id="preciation-input" class="input-section" style="display:none;">
