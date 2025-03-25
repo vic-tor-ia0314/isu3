@@ -1,5 +1,6 @@
 function showInputs() {
   const helpType = document.getElementById("help-type").value;
+  const preciationType = document.getElementById("preciation-type");
 
   const sections = {
     budget: document.getElementById("budget-input"),
@@ -9,18 +10,18 @@ function showInputs() {
     rates: document.getElementById("rates-input"),
   };
 
-  Object.values(sections).forEach(section => {
-    section.style.display = "none"; 
-    section.querySelectorAll("div").forEach(input => input.style.display = "none");
+  Object.values(sections).forEach((section) => {
+    section.style.display = "none";
+    section.querySelectorAll("div").forEach((input) => (input.style.display = "none"));
   });
 
   function showSection(section, inputs) {
     section.style.display = "block";
-    inputs.forEach(inputId => {
+    inputs.forEach((inputId) => {
       document.getElementById(inputId).style.display = "block";
     });
   }
-  
+
   if (helpType === "budget") {
     showSection(sections.budget, ["income-input", "expense-input", "expense-amount-input"]);
   } else if (helpType === "s-interest") {
@@ -28,7 +29,22 @@ function showInputs() {
   } else if (helpType === "c-interest") {
     showSection(sections.cInterest, ["c-principal-input", "c-interest-rate-input", "c-term-amount-input"]);
   } else if (helpType === "preciation") {
-    showSection(sections.preciation, ["preciation-type-input", "preciation-amount-input", "linear-amount-input", "non-linear-amount-input", "type-amount-input"]);
+    showSection(sections.preciation, ["preciation-type-input", "preciation-amount-input", "type-amount-input"]);
+    preciationType.addEventListener("change", function () {
+      const linearInput = document.getElementById("linear-amount-input");
+      const nonLinearInput = document.getElementById("non-linear-amount-input");
+
+      if (preciationType.value === "linear") {
+        linearInput.style.display = "block";
+        nonLinearInput.style.display = "none";
+      } else if (preciationType.value === "non-linear") {
+        linearInput.style.display = "none";
+        nonLinearInput.style.display = "block";
+      } else {
+        linearInput.style.display = "none";
+        nonLinearInput.style.display = "none";
+      }
+    });
   } else if (helpType === "rates") {
     showSection(sections.rates, ["rate-1-numerator-input", "rate-1-denominator-input", "rate-2-numerator-input", "rate-2-denominator-input"]);
   }
