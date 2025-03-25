@@ -143,3 +143,61 @@ function calculateCompoundInterest() {
   const compoundInterestTotal = (cprincipal * (1 + (crate/100))**ctime) + cprincipal;
   document.getElementById("compound-interest-total").innerText = compoundInterestTotal.toFixed(2);
 }
+
+function calculatePreciation() {
+  const preciationType = document.getElementById("preciation-type").value;
+  const startAmount = parseFloat(document.getElementById("preciation-amount").value);
+  const typeAmount = parseInt(document.getElementById("type-amount").value);
+  
+  let finalValue = startAmount;
+
+  if (preciationType === "linear") {
+    const linearAmount = parseFloat(document.getElementById("linear-amount").value);
+    if (isNaN(linearAmount)) {
+      alert("Please enter a valid linear amount.");
+      return;
+    }
+    finalValue = startAmount + (linearAmount * typeAmount);
+
+  } else if (preciationType === "non-linear") {
+    const percentage = parseFloat(document.getElementById("non-linear-amount").value);
+    if (isNaN(percentage)) {
+      alert("Please enter a valid percentage.");
+      return;
+    }
+    finalValue = startAmount * (1 + percentage / 100) ** typeAmount;
+
+  } else {
+    alert("Please select a valid appreciation/depreciation type.");
+    return;
+  }
+
+  document.getElementById("preciation-result").innerText = finalValue.toFixed(2);
+}
+
+function calculateRates() {
+  const num1 = parseFloat(document.getElementById("rate-1-numerator").value);
+  const den1 = parseFloat(document.getElementById("rate-1-denominator").value);
+  const num2 = parseFloat(document.getElementById("rate-2-numerator").value);
+  const den2 = parseFloat(document.getElementById("rate-2-denominator").value);
+  
+  if (isNaN(num1) || isNaN(den1) || isNaN(num2) || isNaN(den2) || den1 === 0 || den2 === 0) {
+    alert("Please enter valid numbers and make sure denominators are not zero.");
+    return;
+  }
+  
+  const rate1 = num1 / den1;
+  const rate2 = num2 / den2;
+  const difference = Math.abs(rate2 - rate1).toFixed(2);
+  
+  let result;
+  if (rate1 > rate2) {
+    result = `The first rate is the better deal by ${difference}`;
+  } else if (rate2 > rate1) {
+    result = `The second rate is the better deal by ${difference}`;
+  } else {
+    result = "Both are the same rate";
+  }
+  
+  document.getElementById("rate-result").innerText = result;
+}
