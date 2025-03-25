@@ -188,7 +188,7 @@ function calculateRates() {
   
   const rate1 = num1 / den1;
   const rate2 = num2 / den2;
-  const difference = Math.abs(rate2 - rate1).toFixed(2);
+  const difference = Math.abs(rate2 - rate1).toFixed(5);
   
   let result;
   if (rate1 > rate2) {
