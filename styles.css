@@ -171,3 +171,15 @@ footer {
 #expense-list td:last-child {
     text-align: right;
 }
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
